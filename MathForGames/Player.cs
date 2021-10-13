@@ -5,10 +5,12 @@ using MathLibrary;
 
 namespace MathForGames
 {
+    
     class Player : Actor
     {
-        private float _speed;
+        private float _speed;        
         private Vector2 _velocity;
+        
 
         //Allows us to give _ speed a value
         public float Speed
@@ -27,15 +29,14 @@ namespace MathForGames
         public Player(char icon, float x, float y, float speed, string name = "Actor", ConsoleColor color = ConsoleColor.White) 
             : base(icon, x, y, name, color)
         {
-            _speed = speed;
+            _speed = speed;            
         }
 
         public override void Update()
-        {
-            Vector2 moveDirection = new Vector2();
-            
+        {            
+            Vector2 moveDirection = new Vector2();            
             ConsoleKey keyPressed = Engine.GetNextKey();
-
+            
             if (keyPressed == ConsoleKey.A)
                 moveDirection = new Vector2 { X = -1 };
             if (keyPressed == ConsoleKey.D)
@@ -53,7 +54,7 @@ namespace MathForGames
 
         public override void OnCollision(Actor actor)
         {
-            Engine.CloseApplication();
-        }
+            ///Engine.CloseApplication();
+        }        
     }
 }
