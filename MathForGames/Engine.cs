@@ -39,13 +39,20 @@ namespace MathForGames
         /// </summary>
         private void Start()
         {
+            //Create new scene
             Scene scene = new Scene();
+            //Create and add new actors to the scene
             Actor Goal = new Actor('G', new MathLibrary.Vector2 { X = 0, Y = 0 }, "Goal", ConsoleColor.Yellow);            
             Player Club = new Player('L', 5, 5, 1, "Club", ConsoleColor.DarkMagenta);
-            
-            scene.AddActor(Goal);            
+            scene.AddActor(Goal);
             scene.AddActor(Club);
-            
+
+            //Create and add UI for the scene
+            UIText winText = new UIText(50, 10, "Win", ConsoleColor.Red, 18, 15, "You Made it in the hole Congrates");
+            PlayerHud playerHud = new PlayerHud(player, healthText, livesText);
+            scene.AddUIElement(winText);
+            scene.AddUIElement(playerHud);
+
             _currentSceneIndex = AddScene(scene);
 
             _scenes[_currentSceneIndex].Start();
@@ -60,7 +67,8 @@ namespace MathForGames
         private void Update()
         {
             _scenes[_currentSceneIndex].Update();
-            
+            _scenes[_currentSceneIndex].UpdateUI();
+
             //While there is a key in the input bufer read it
             while (Console.KeyAvailable)
             {
@@ -81,6 +89,7 @@ namespace MathForGames
 
             //Adds all actors icons to buffer
             _scenes[_currentSceneIndex].Draw();
+            _scenes[_currentSceneIndex].DrawUI();
 
             //Iterate/Goes through buffer
             for (int y = 0; y < _buffer.GetLength(1); y++ )
