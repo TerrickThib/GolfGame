@@ -48,11 +48,9 @@ namespace MathForGames
             scene.AddActor(Club);
 
             //Create and add UI for the scene
-            UIText winText = new UIText(50, 10, "Win", ConsoleColor.Red, 18, 15, "You Made it in the hole Congrates");
-            PlayerHud playerHud = new PlayerHud(player, healthText, livesText);
+            UIText winText = new UIText(50, 10, "Win", ConsoleColor.Red, 18, 15, "You Made it in the hole Congrates");            
             scene.AddUIElement(winText);
-            scene.AddUIElement(playerHud);
-
+            
             _currentSceneIndex = AddScene(scene);
             _scenes[_currentSceneIndex].Start();
 
@@ -81,7 +79,7 @@ namespace MathForGames
         private void Draw()
         {
             //Clear the stuff that was on the screen in the last frame
-            _buffer = new Icon[Console.WindowWidth, Console.WindowHeight - 1];
+            _buffer = new Icon[Console.WindowWidth - 1, Console.WindowHeight - 1];
 
             //Reset the cursor position to the top so the previous screen is drawn over
             Console.SetCursorPosition(0, 0);
