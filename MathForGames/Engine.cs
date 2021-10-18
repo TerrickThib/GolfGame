@@ -54,7 +54,6 @@ namespace MathForGames
             scene.AddUIElement(playerHud);
 
             _currentSceneIndex = AddScene(scene);
-
             _scenes[_currentSceneIndex].Start();
 
             //Makes curser go bye bye
